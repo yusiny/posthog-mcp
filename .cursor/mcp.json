@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "posthog": {
+      "command": "/Users/hamed/.local/bin/uv",
+      "args": [
+        "--directory",
+        "/Users/hamed/dev/posthog/playground/posthog-mcp",
+        "run",
+        "posthog.py"
+      ]
+    }
+  }
+}
