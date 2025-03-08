@@ -19,6 +19,13 @@ A Model Context Protocol (MCP) server for interacting with PostHog. Create annot
 2. **Installation**
 
    ```bash
+   # clone the repo
+   git clone git@github.com:PostHog/posthog-mcp.git
+
+   # or if https, use: git clone https://github.com/PostHog/posthog-mcp.git
+
+   cd posthog-mcp
+
    uv venv
    source .venv/bin/activate
 
