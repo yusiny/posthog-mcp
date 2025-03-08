@@ -1,4 +1,4 @@
-# Minimum PostHog MCP Server 📊
+# PostHog MCP Server 📊
 
 A Model Context Protocol (MCP) server for interacting with PostHog. Create annotations and manage projects directly through Claude Desktop!
 
