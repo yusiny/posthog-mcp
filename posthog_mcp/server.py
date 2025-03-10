@@ -1,6 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 
 from posthog_mcp.tools.annotations.annotations import create_annotation_request
+from posthog_mcp.tools.insights.insights import get_insight_details, get_insights
 from posthog_mcp.tools.projects.projects import get_current_organization, list_projects
 
 # Initialize FastMCP server
@@ -20,7 +21,7 @@ async def list_posthog_projects() -> str:
     if not projects:
         return "No projects found"
         
-    return "Available projects:\n" + "\n".join(
+    return f"Available projects ({len(projects)}):\n" + "\n".join(
         f"ID: {p['id']} - Name: {p['name']}" for p in projects
     ) 
 
@@ -44,6 +45,79 @@ Content: {result['content']}
 Date: {result.get('date_marker', 'Now')}
 Created by: {result['created_by']['email']}
 """ 
+
+@mcp.tool()
+async def list_posthog_insights(project_id: int, search: str | None = None) -> str:
+    """List all available PostHog insights for a project.
+    
+    Args:
+        project_id: The ID of the project as an integer (e.g. 99423)
+        search: Optional search query to filter insights
+    """
+    try:
+        insights = await get_insights(project_id, search)
+        
+        if not insights:
+            return "No insights found"
+            
+        formatted_insights = []
+        for i in insights:
+            insight_id = i.get('id') or i.get('short_id', 'N/A')
+            name = i.get('name') or i.get('derived_name', 'Unnamed')
+            formatted_insights.append(f"ID: {insight_id} - Name: {name}")
+            
+        return f"Available insights ({len(insights)}):\n" + "\n".join(formatted_insights)
+    except Exception as e:
+        return f"Failed to list insights: {str(e)}"
+
+@mcp.tool()
+async def search_posthog_insights(project_id: int, search: str) -> str:
+    """Search for PostHog insights by name.
+    
+    Args:
+        project_id: The ID of the project as an integer (e.g. 99423)
+        search: The search query to filter insights by name
+    """
+    try:
+        insights = await get_insights(project_id, search)
+        
+        if not insights:
+            return "No insights found"
+            
+        formatted_insights = []
+        for i in insights:
+            insight_id = i.get('id') or i.get('short_id', 'N/A')
+            name = i.get('name') or i.get('derived_name', 'Unnamed')
+            formatted_insights.append(f"ID: {insight_id} - Name: {name}")
+            
+        return f"Search results ({len(insights)}):\n" + "\n".join(formatted_insights)
+    except Exception as e:
+        return f"Failed to search insights: {str(e)}"
+
+@mcp.tool()
+async def get_posthog_insight_details(project_id: int, insight_id: int) -> str:
+    """Get details for a specific PostHog insight.
+    
+    Args:
+        project_id: The ID of the project as an integer (e.g. 99423)
+        insight_id: The ID of the insight as an integer (e.g. 12345)
+    """
+    try:
+        insight_details = await get_insight_details(project_id, insight_id)
+        
+        if not insight_details:
+            return "No insight details found"
+            
+        formatted_details = []
+        for key, value in insight_details.items():
+            formatted_details.append(f"{key}: {value}")
+            
+        return "Insight details:\n" + "\n".join(formatted_details)
+    except Exception as e:
+        return f"Failed to get insight details: {str(e)}"
+    
+        
+
 
 if __name__ == "__main__":
     mcp.run(transport='stdio')

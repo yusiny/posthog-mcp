@@ -49,8 +49,8 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.ruff.lint.isort]
-# known-first-party = ["our_package_name"]
-known-third-party = ["pytest", "requests", "httpx", "click", "mcp"]
+known-first-party = ["posthog_mcp"]
+known-third-party = ["pytest", "httpx", "mcp"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.ruff.lint.mccabe]

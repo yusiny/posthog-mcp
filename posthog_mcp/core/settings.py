@@ -18,3 +18,5 @@ API_ENDPOINT = REGION_ENDPOINTS[POSTHOG_REGION]
 CURRENT_ORG_ENDPOINT = "/api/organizations/@current/"
 PROJECTS_ENDPOINT = "/api/organizations/{org_id}/projects/"
 ANNOTATIONS_ENDPOINT = "/api/projects/{project_id}/annotations/" 
+INSIGHTS_ENDPOINT = "/api/projects/{project_id}/insights/"
+INSIGHT_DETAILS_ENDPOINT = "/api/projects/{project_id}/insights/{insight_id}/"

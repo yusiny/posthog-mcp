@@ -7,10 +7,7 @@
         "/Users/hamed/dev/posthog/playground/posthog-mcp",
         "run",
         "posthog_mcp"
-      ],
-      "env": {
-        "POSTHOG_REGION": "eu"
-      }
+      ]
     }
   }
 }
