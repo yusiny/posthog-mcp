@@ -55,7 +55,7 @@ A Model Context Protocol (MCP) server for interacting with PostHog. Create annot
              "--directory",
              "/path/to/your/posthog-mcp",  # Full path to this project
              "run",
-             "posthog.py"
+             "posthog_mcp"
            ]
          }
        }
@@ -74,6 +74,18 @@ Ask Claude:
 ```
 "List my PostHog projects"
 ```
+
+### Get and Search for Insights
+
+Ask Claude:
+
+"List my PostHog insights" or "Search for revenue insights in my PostHog"
+
+### Search for documentations online
+
+You can ask:
+
+- "how can i do reverse proxy in nextjs in posthog?"
 
 ### Create Annotation
 
