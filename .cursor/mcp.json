@@ -6,8 +6,11 @@
         "--directory",
         "/Users/hamed/dev/posthog/playground/posthog-mcp",
         "run",
-        "posthog.py"
-      ]
+        "posthog_mcp"
+      ],
+      "env": {
+        "POSTHOG_REGION": "eu"
+      }
     }
   }
 }
