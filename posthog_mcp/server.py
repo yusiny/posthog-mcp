@@ -1,6 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 
 from posthog_mcp.tools.annotations.annotations import create_annotation_request
+from posthog_mcp.tools.docs.docs import search_docs
 from posthog_mcp.tools.insights.insights import get_insight_details, get_insights
 from posthog_mcp.tools.projects.projects import get_current_organization, list_projects
 
@@ -115,9 +116,27 @@ async def get_posthog_insight_details(project_id: int, insight_id: int) -> str:
         return "Insight details:\n" + "\n".join(formatted_details)
     except Exception as e:
         return f"Failed to get insight details: {str(e)}"
-    
-        
 
+@mcp.tool()
+async def search_posthog_docs(query: str) -> str:
+    """Search PostHog documentation using Inkeep.
+    
+    Args:
+        query: The search query for the documentation
+    """
+    try:
+        result = await search_docs(query)
+        
+        if "error" in result:
+            return f"Failed to search docs: {result['error']}"
+            
+        if "choices" not in result:
+            return "No results found"
+            
+        answer = result["choices"][0]["message"]["content"]
+        return f"Documentation search results:\n\n{answer}"
+    except Exception as e:
+        return f"Failed to search docs: {str(e)}"
 
 if __name__ == "__main__":
     mcp.run(transport='stdio')
