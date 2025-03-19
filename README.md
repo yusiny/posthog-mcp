@@ -42,7 +42,9 @@ A Model Context Protocol (MCP) server for interacting with PostHog. Create annot
 
 4. **Claude Desktop Setup**
    - Install [Claude Desktop](https://claude.ai/desktop)
-   - Open Claude Desktop settings and click "Edit Config"
+   - Open Claude Desktop settings and click "Edit Config". Alternatively, you can open the file from:
+     - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+     - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
    - Add this to your `claude_desktop_config.json` (adjust paths according to your system):
      ```json
      {
@@ -53,12 +55,13 @@ A Model Context Protocol (MCP) server for interacting with PostHog. Create annot
              "--directory",
              "/path/to/your/posthog-mcp",  # Full path to this project
              "run",
-             "posthog.py"
+             "posthog_mcp"
            ]
          }
        }
      }
      ```
+     Check [the latest documentation](https://modelcontextprotocol.io/quickstart/user) on setting up Claude Desktop as MCP client if you ran into any issues.
 
 ## Usage 💡
 
@@ -71,6 +74,18 @@ Ask Claude:
 ```
 "List my PostHog projects"
 ```
+
+### Get and Search for Insights
+
+Ask Claude:
+
+"List my PostHog insights" or "Search for revenue insights in my PostHog"
+
+### Search for documentations online
+
+You can ask:
+
+- "how can i do reverse proxy in nextjs in posthog?"
 
 ### Create Annotation
 
