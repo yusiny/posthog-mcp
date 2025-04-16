@@ -21,6 +21,8 @@ PROJECTS_ENDPOINT = "/api/organizations/{org_id}/projects/"
 ANNOTATIONS_ENDPOINT = "/api/projects/{project_id}/annotations/" 
 INSIGHTS_ENDPOINT = "/api/projects/{project_id}/insights/"
 INSIGHT_DETAILS_ENDPOINT = "/api/projects/{project_id}/insights/{insight_id}/"
+QUERY_ENDPOINT = "/api/projects/{project_id}/query/{query_id}/"
+CREATE_QUERY_ENDPOINT = "/api/projects/{project_id}/query/"
 
 # Inkeep settings
 INKEEP_API_KEY = os.getenv("INKEEP_API_KEY")
